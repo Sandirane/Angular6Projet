@@ -1,0 +1,265 @@
+
+   <!-- Page Content -->
+   <div class="container">
+    
+          <div class="row">
+    
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+  
+    
+              <!-- Blog Post -->
+              <div class="card mb-8">
+        
+                <div class="card-body">
+                  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="form-inline">
+                    
+                  <div class="card">
+                        <div class="card-header">
+                          <h2>{{pageTitle}}</h2>
+                      <!--<h2>Form Create Employee</h2>-->
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group" [ngClass]="{'has-error' : formErrors.fullName}">
+                                <label class="col-sm-2 control-label" for="fullName">Full Name</label>
+                                <div class="col-sm-10">
+                                  
+                                  <input id="fullName" formControlName="fullName" type="text" class="form-control" (blur)="logValidationErrors()">
+                                      
+                                  <span class="danger" *ngIf="formErrors.fullName">
+                                      {{formErrors.fullName}}
+                                  </span>
+                                
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                  Contact Preference 
+                                </label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                    <input formControlName="contactPreference" type="radio" value="email">
+                                      Email
+                                    </label>
+                                    <label class="radio-inline">
+                                    <input formControlName="contactPreference" type="radio" value="phone">
+                                      Phone                                  
+                                    </label>
+                                    
+                                </div>
+                            </div>
+    
+                          <div formGroupName="emailGroup">
+    
+                            <div class="form-group" [ngClass]="{'has-error' : formErrors.email}">
+                                <label class="col-sm-2 control-label" for="email">Email</label>
+                                <div class="col-sm-10">
+                                  <input id="email" formControlName="email" type="text" class="form-control" (blur)="logValidationErrors()">
+                                  <span class="danger" *ngIf="formErrors.email">
+                                      {{formErrors.email}}
+                                  </span>
+                                </div>
+                            </div>
+                          
+    
+                            <div class="form-group" [ngClass]="{'has-error' : formErrors.confirmEmail || formErrors.emailGroup}">
+                                <label class="col-sm-2 control-label" for="confirmEmail">Confirm Email</label>
+                                <div class="col-sm-10">
+                                  <input id="confirmEmail" formControlName="confirmEmail" type="text" class="form-control" (blur)="logValidationErrors()">
+                                  <span *ngIf="formErrors.confirmEmail || formErrors.emailGroup">
+                                      {{formErrors.confirmEmail ? formErrors.confirmEmail : formErrors.emailGroup}}
+                                  </span>
+                                </div>
+                            </div>
+                          
+                          </div>
+    
+                            <div class="form-group" [ngClass]="{'has-error' : formErrors.phone}">
+                                <label class="col-sm-2 control-label" for="phone">Phone</label>
+                                <div class="col-sm-10">
+                                  <input id="phone" formControlName="phone" type="text" class="form-control" (blur)="logValidationErrors()">
+                                  <span class="danger" *ngIf="formErrors.phone">
+                                      {{formErrors.phone}}
+                                  </span>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                              <div class="">
+                                  <!--<button type="button" class="btn btn-primary" (click)="addSkillButtonClick()" [disabled]="employeeForm.get('skills').invalid">-->
+                                <button type="button" class="btn btn-primary" (click)="addSkillButtonClick()">
+                                  Add Skill
+                                </button>
+                              </div>
+                            </div>
+    
+                  <div formArrayName="skills" 
+                  *ngFor="let skill of employeeForm.get('skills').controls; let i = index">
+                         <!-- <hr *ngif="i>0"> -->
+                      <div [formGroupName]="i">
+                            <div class="form-group" [ngClass]="{'has-error' : skill.get('skillName').invalid && 
+                                                                              skill.get('skillName').touched}">
+                                <label class="col-sm-2 control-label" [attr.for]="'skillName'+i">
+                                  Skill
+                                </label>
+                                <div class="col-sm-5">
+                                  <input [id]="'skillName'+i" formControlName="skillName" type="text" class="form-control" placeholder="Skill">
+                                  <span class="danger" *ngIf="skill.get('skillName').errors?.required && 
+                                                              skill.get('skillName').touched">
+                                      Skill Name is required
+                                  </span>
+                                </div>
+                                <div class="col-sm-5" *ngIf="employeeForm.get('skills').length>1">
+                                  <button type="button" class="btn btn-danger btn-sm pull-right" title="Delete Skill" (click)="removeSkillButtonClick(i)">
+                                    <span class="glyphicon glyphicon-remove">X</span>
+                                  </button>
+                                </div>
+                            </div>
+    
+                          <div class="form-group" [ngClass]="{'has-error' : skill.get('experienceInYears').invalid && 
+                                                                            skill.get('experienceInYears').touched}">
+                            <label class="col-sm-2 control-label" [attr.for]="experienceInYears">
+                                Experience (In Years)
+                            </label>
+                            <div class="col-sm-5">
+                                <input [id]="'experienceInYears'+i" formControlName="experienceInYears" type="text" class="form-control" placeholder="Experience In Years">
+                                <span class="danger" *ngIf="skill.get('experienceInYears').errors?.required && 
+                                                            skill.get('experienceInYears').touched">
+                                 Experience is required
+                                </span>
+                            </div>
+                          </div>
+    
+                            <div class="form-group" [ngClass]="{'has-error' : skill.get('proficiency').invalid && skill.get('proficiency').touched}">
+                                <label class="col-sm-2 control-label">Proficiency</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                    <input formControlName="proficiency" type="radio" value="beginner">Beginner
+                                    </label>
+                                    <label class="radio-inline">
+                                    <input formControlName="proficiency" type="radio" value="intermediate">Intermediate                                  
+                                    </label>
+                                    <label class="radio-inline">
+                                    <input formControlName="proficiency" type="radio" value="advanced">Advanced                                  
+                                     </label>
+                                     <span class="danger" *ngIf="skill.get('proficiency').errors?.required && 
+                                                                 skill.get('proficiency').touched">
+                                      Proficiency is required
+                                    </span>
+                                </div>
+                            </div>
+    
+                      </div>
+    
+                 </div>
+    
+                            <button type="submit" class="btn btn-info">Save</button>
+                           <!-- / 
+                            <button type="button" class="btn btn-info" (click)="onLoadDataClick()">Load data</button>
+                           -->
+                        </div>
+                      </div>
+                
+                </form>
+                </div>
+          
+                <div class="card-footer text-muted">
+                  
+                </div>
+              </div>
+            </div>
+    
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+  
+                          <!-- Table Accordion Links Widget -->
+                          <div class="card my-4">
+                              <h5 class="card-header">Table Accordion Links</h5>
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <ul class="list-unstyled mb-0">
+                                      <li>
+                                      <a class="nav-link" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                                        Form control
+                                      </a>
+                                    </li>
+                                      <li>
+                                        
+                                      </li>
+                                      <li>
+                                        
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <ul class="list-unstyled mb-0">
+                                      <li>
+                                       
+                                      </li>
+                                      <li>
+                                        
+                                      </li>
+                                      <li>
+                                       
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                  
+          
+          <!-- Side Widget -->
+              <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <h2>Basic Table</h2>
+                                 
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>FormGroup</th>
+                              <th>FormControl (fullName)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>touched : {{ employeeForm.touched }}</td>
+                              <td>touched : {{ employeeForm.get('fullName').touched }}</td>
+                            </tr>
+                            <tr>
+                              <td>dirty : {{ employeeForm.dirty }}</td>
+                              <td>dirty : {{ employeeForm.get('fullName').dirty }}</td>
+                            </tr>
+                            <tr>
+                                <td>valid : {{ employeeForm.valid }}</td>
+                                <td>valid : {{ employeeForm.get('fullName').valid }}</td>
+                            </tr>
+                            <tr>
+                                <td>Form Values : {{ employeeForm.value | json }}</td>
+                                <td>Full Name Values : {{ employeeForm.get('fullName').value }}</td>
+                            </tr>
+              
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+              </div>
+          
+  
+              
+    
+            </div>
+    
+          </div>
+          <!-- /.row -->
+    
+        </div>
+        <!-- /.container -->
+      
+      
+      
+      
