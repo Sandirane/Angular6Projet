@@ -1,0 +1,135 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "fullName": "Paul",
+      "contactPreference": "email",
+      "email": "Paul@gmail.com",
+      "phone": "0123456789",
+      "skills": [
+        {
+          "skillName": "Java",
+          "experienceInYears": 1,
+          "proficiency": "beginer"
+        },
+        {
+          "skillName": "php",
+          "experienceInYears": 2,
+          "proficiency": "intermediate"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "fullName": "Greg",
+      "contactPreference": "email",
+      "phone": "0123456789",
+      "skills": [
+        {
+          "skillName": "java",
+          "experienceInYears": "4",
+          "proficiency": "intermediate"
+        }
+      ],
+      "email": "greg@gmail.com"
+    },
+    {
+      "id": 3,
+      "fullName": "Jack",
+      "contactPreference": "email",
+      "email": "jack@gmail.com",
+      "phone": "1023456789",
+      "skills": [
+        {
+          "skillName": "php",
+          "experienceInYears": "6",
+          "proficiency": "advanced"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "fullName": "david",
+      "contactPreference": "email",
+      "email": "david@gmail.com",
+      "phone": "0123456789",
+      "skills": [
+        {
+          "skillName": "java",
+          "experienceInYears": "6",
+          "proficiency": "advanced"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "fullName": "hulk",
+      "contactPreference": "email",
+      "email": "hulk@gmail.com",
+      "phone": "0123456789",
+      "skills": [
+        {
+          "skillName": "c#",
+          "experienceInYears": "5",
+          "proficiency": "advanced"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "fullName": "test",
+      "contactPreference": "phone",
+      "email": "test@gmail.com",
+      "phone": "1023456789",
+      "skills": [
+        {
+          "skillName": "c#",
+          "experienceInYears": "33",
+          "proficiency": "advanced"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "fullName": "testtest",
+      "contactPreference": "phone",
+      "email": "testtest@gmail.com",
+      "phone": "0123456789",
+      "skills": [
+        {
+          "skillName": "php",
+          "experienceInYears": "45",
+          "proficiency": "advanced"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "fullName": "Sk",
+      "contactPreference": "email",
+      "email": "sk77@hotmail.fr",
+      "phone": "0123456789",
+      "skills": [
+        {
+          "skillName": "c#",
+          "experienceInYears": "4",
+          "proficiency": "intermediate"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "fullName": "chepa",
+      "contactPreference": "email",
+      "email": "chepa@hotmail.fr",
+      "phone": "0123456789",
+      "skills": [
+        {
+          "skillName": "php",
+          "experienceInYears": "4",
+          "proficiency": "intermediate"
+        }
+      ]
+    }
+  ]
+}
