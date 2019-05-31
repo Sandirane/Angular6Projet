@@ -1,4 +1,5 @@
-# Agular6Projet
+# Angular6Projet
+npm install
 Run `ng serve` 
 `http://localhost:4200/`
 
